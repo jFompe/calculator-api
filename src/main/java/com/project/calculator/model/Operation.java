@@ -6,7 +6,7 @@ public enum Operation {
 
     private final char symbol;
 
-    private Operation(char symbol) {
+    Operation(char symbol) {
         this.symbol = symbol;
     }
 
