@@ -1,1 +1,1 @@
-# calculato-api
+# calculator-api
