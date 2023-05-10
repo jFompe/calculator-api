@@ -2,6 +2,7 @@ package com.project.calculator.controller;
 
 import com.project.calculator.model.Operation;
 import com.project.calculator.service.CalculatorService;
+import io.corp.calculator.TracerImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,13 @@ public class CalculatorController {
 
     private final CalculatorService calculatorService;
 
+    // This should probably be -> private final TracerAPI tracer;
+    private final TracerImpl tracer;
+
     @Autowired
-    public CalculatorController(CalculatorService calculatorService) {
+    public CalculatorController(CalculatorService calculatorService, TracerImpl tracer) {
         this.calculatorService = calculatorService;
+        this.tracer = tracer;
     }
 
     private final Logger logger = LoggerFactory.getLogger(CalculatorController.class);
@@ -33,6 +38,7 @@ public class CalculatorController {
     ) {
         logger.info("CalculatorApi - Performing binary operation {} {} {}", a, op.getSymbol(), b);
         Integer result = calculatorService.performBinaryOperation(a, op, b);
+        tracer.trace(result);
         logger.info("CalculatorApi - Returning result: {}", result);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
