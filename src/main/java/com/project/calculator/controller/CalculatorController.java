@@ -25,14 +25,15 @@ public class CalculatorController {
 
     private final Logger logger = LoggerFactory.getLogger(CalculatorController.class);
 
-    @GetMapping
+    @GetMapping("/binary")
     public ResponseEntity<Integer> binaryOperation(
             @RequestParam Integer a,
             @RequestParam Operation op,
             @RequestParam Integer b
     ) {
-        logger.info("CalculatorApi - Performing operation {} {} {}", a, op.getSymbol(), b);
+        logger.info("CalculatorApi - Performing binary operation {} {} {}", a, op.getSymbol(), b);
         Integer result = calculatorService.performBinaryOperation(a, op, b);
+        logger.info("CalculatorApi - Returning result: {}", result);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
