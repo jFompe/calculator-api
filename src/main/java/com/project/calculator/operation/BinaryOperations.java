@@ -6,7 +6,7 @@ public class BinaryOperations {
         return a + b;
     }
 
-    public static Integer substract(Integer a, Integer b) {
+    public static Integer subtract(Integer a, Integer b) {
         return a - b;
     }
 

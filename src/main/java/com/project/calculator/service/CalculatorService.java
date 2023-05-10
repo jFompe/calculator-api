@@ -10,7 +10,7 @@ public class CalculatorService {
     public Integer performBinaryOperation(Integer a, Operation op, Integer b) {
         return switch (op) {
             case PLUS -> BinaryOperations.sum(a, b);
-            case MINUS -> BinaryOperations.substract(a, b);
+            case MINUS -> BinaryOperations.subtract(a, b);
         };
     }
 
