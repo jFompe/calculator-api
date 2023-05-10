@@ -23,6 +23,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>io.corp</groupId>
+			<artifactId>calculator</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -34,6 +40,42 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>libs/</classpathPrefix>
+							<mainClass>com.project.calculator.CalculatorApplication</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>2.5.2</version>
+				<executions>
+					<execution>
+						<id>install-local-library</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>install-file</goal>
+						</goals>
+						<configuration>
+							<groupId>io.corp</groupId>
+							<artifactId>calculator</artifactId>
+							<version>1.0.0</version>
+							<file>${project.basedir}/libs/tracer-1.0.0.jar</file>
+							<packaging>jar</packaging>
+							<generatePom>true</generatePom>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
