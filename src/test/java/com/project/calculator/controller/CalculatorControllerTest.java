@@ -37,7 +37,7 @@ class CalculatorControllerTest {
         // When
         ResultActions result = mockMvc.perform(
                 get(BINARY_OPS_URL + "?a={a}&b={b}&op={op}", "1", "2", Operation.PLUS.name())
-                );
+        );
 
         // Then
         result.andExpect(status().isOk());
