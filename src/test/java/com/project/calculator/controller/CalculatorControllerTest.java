@@ -60,5 +60,49 @@ class CalculatorControllerTest {
         result.andExpect(content().string("2"));
     }
 
+    @Test
+    public void binaryOperation_withNonExistentOperation_shouldReturnBadRequestResult() throws Exception {
+        // When
+        ResultActions result = mockMvc.perform(
+                get(BINARY_OPS_URL + "?a={a}&b={b}&op={op}", "1", "2", "TIMES")
+        );
+
+        // Then
+        result.andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void binaryOperation_withNonIntegerValue_shouldReturnBadRequestResult() throws Exception {
+        // When
+        ResultActions result = mockMvc.perform(
+                get(BINARY_OPS_URL + "?a={a}&b={b}&op={op}", "test", "2", Operation.PLUS.name())
+        );
+
+        // Then
+        result.andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void binaryOperation_withFloatValue_shouldReturnBadRequestResult() throws Exception {
+        // When
+        ResultActions result = mockMvc.perform(
+                get(BINARY_OPS_URL + "?a={a}&b={b}&op={op}", "1.3", "2", Operation.PLUS.name())
+        );
+
+        // Then
+        result.andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void unaryOperation_withNonImplementedGroup_shouldReturnNotFoundResult() throws Exception {
+        // When
+        ResultActions result = mockMvc.perform(
+                get("/calculate/unary" + "?a={a}&b={b}&op={op}", "1", "1", Operation.PLUS.name())
+        );
+
+        // Then
+        result.andExpect(status().isNotFound());
+    }
+
 
 }
