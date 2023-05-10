@@ -7,10 +7,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class CalculatorService {
 
+    private final BinaryOperations binaryOperations;
+
+    public CalculatorService(BinaryOperations binaryOperations) {
+        this.binaryOperations = binaryOperations;
+    }
+
     public Integer performBinaryOperation(Integer a, Operation op, Integer b) {
         return switch (op) {
-            case PLUS -> BinaryOperations.sum(a, b);
-            case MINUS -> BinaryOperations.subtract(a, b);
+            case PLUS -> binaryOperations.sum(a, b);
+            case MINUS -> binaryOperations.subtract(a, b);
         };
     }
 
