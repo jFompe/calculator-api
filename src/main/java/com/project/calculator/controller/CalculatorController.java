@@ -25,7 +25,7 @@ public class CalculatorController {
 
     private final Logger logger = LoggerFactory.getLogger(CalculatorController.class);
 
-    @GetMapping
+    @GetMapping("/binary")
     public ResponseEntity<Integer> binaryOperation(
             @RequestParam Integer a,
             @RequestParam Operation op,
