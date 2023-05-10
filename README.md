@@ -1,1 +1,18 @@
 # calculator-api
+
+Author: Jaime Fomperosa
+Date: May 2023
+
+
+## Installation 
+
+```bash
+./mvnw install:install-file -Dfile=libs/tracer-1.0.0.jar -DgroupId=io.corp -DartifactId=calculator -Dversion=1.0.0 -Dpackaging=jar
+./mvnw clean package
+```
+
+## Execution
+
+```bash
+java -jar target/calculator-0.0.1-SNAPSHOT.jar
+```
